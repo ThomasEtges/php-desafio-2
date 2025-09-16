@@ -22,3 +22,14 @@ DESAFIO-PHP-2/
 ├── config/               # Configurações do sistema (banco, email, constants)
 │
 └── vendor/               # Bibliotecas externas instaladas manualmente
+
+
+php -S localhost:8000 -t public
+
+-> iniciar o xampp
+	cd /opt/lampp/
+	sudo ./manager-linux-x64.run
+	rodar apache mysql
+
+->(criar o banco caso não tenha)
+http://localhost/phpmyadmin/
