@@ -1,5 +1,11 @@
 <?php
 
+$mysqli->query("SET FOREIGN_KEY_CHECKS = 0");
+
+$mysqli->query("TRUNCATE TABLE usuarios");
+
+$mysqli->query("SET FOREIGN_KEY_CHECKS = 1");
+
 $sql = "INSERT INTO usuarios (nome, email) VALUES
     ('João Silva', 'joao@example.com'),
     ('Maria Oliveira', 'maria@example.com'),

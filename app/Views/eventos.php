@@ -5,7 +5,63 @@
     <title></title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
-    Testeeeeeeeeeeeee
+<style>
+
+*{
+    padding: 0;
+    margin: 0;
+}
+.conteudo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.eventosSection{
+    padding: 25px;
+}
+
+.carrinhoSection{
+    padding: 25px;
+    border-left: 1px solid #727272ff;
+    width: 200px;
+}
+
+.tituloCarrinho{
+    display: flex;
+    justify-content: center ;
+}
+
+</style>
+<body class="conteudo">
+    <div class="eventosSection">
+    <main>
+    <?php if (!empty($eventos)): ?>
+        <ul>
+            <?php foreach ($eventos as $evento): ?>
+                <li>
+                    <strong><?= htmlspecialchars($evento['evento_nome']) ?></strong><br>
+                    Início: <?= date('d/m/Y H:i', strtotime($evento['data_inicio'])) ?><br>
+                    Fim: <?= date('d/m/Y H:i', strtotime($evento['data_fim'])) ?><br>
+                    Descrição: <?= htmlspecialchars($evento['descricao']) ?><br>
+                    Lote: <?= htmlspecialchars($evento['lote_nome']) ?>
+                </li>
+                <input type="number" min="1" step="1" value="1"><button>Adicionar ao carrinho</button>
+                <hr>
+                <br>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>Nenhum evento encontrado.</p>
+    <?php endif; ?>
+    <main>
+    </div>
+    <div class="carrinhoSection">
+        <div class="tituloCarrinho">
+            Carrinho
+        </div>
+        <div>
+
+        </div>
+    </div>
 </body>
 </html>

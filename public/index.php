@@ -1,5 +1,6 @@
 <?php
 include("../database/connection.php");
+require_once __DIR__ . '/../app/Controllers/EventosController.php';
 
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 
@@ -8,7 +9,8 @@ switch ($page) {
         include("../app/Views/home.php");
         break;
     case 'eventos':
-        include("../app/Views/eventos.php");
+        $controller = new EventosController($mysqli);
+        $controller->index();
         break;
     default:
         echo "Página não encontrada!";
