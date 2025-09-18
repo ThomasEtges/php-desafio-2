@@ -9,8 +9,8 @@ switch ($page) {
         include("../app/Views/home.php");
         break;
     case 'eventos':
-        $controller = new EventosController($mysqli);
-        $controller->index();
+        $eventoController = new EventosController($mysqli);
+        $eventoController->index();
         break;
     default:
         echo "Página não encontrada!";

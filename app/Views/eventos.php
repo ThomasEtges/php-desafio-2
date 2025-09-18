@@ -35,17 +35,18 @@
 <body class="conteudo">
     <div class="eventosSection">
     <main>
-    <?php if (!empty($eventos)): ?>
+    <?php if ($eventos): ?>
         <ul>
             <?php foreach ($eventos as $evento): ?>
                 <li>
-                    <strong><?= htmlspecialchars($evento['evento_nome']) ?></strong><br>
+                    <strong><?= htmlspecialchars($evento['nome']) ?></strong><br>
                     Início: <?= date('d/m/Y H:i', strtotime($evento['data_inicio'])) ?><br>
                     Fim: <?= date('d/m/Y H:i', strtotime($evento['data_fim'])) ?><br>
                     Descrição: <?= htmlspecialchars($evento['descricao']) ?><br>
-                    Lote: <?= htmlspecialchars($evento['lote_nome']) ?>
+                    Lote: <?= htmlspecialchars($evento['lote_atual']) ?><br>
+                    Preço: <?= htmlspecialchars($evento['preco']) ?>
                 </li>
-                <input type="number" min="1" step="1" value="1"><button>Adicionar ao carrinho</button>
+                <input type="number" min="1" step="1" value="1"><button onclick="">Adicionar ao carrinho</button>
                 <hr>
                 <br>
             <?php endforeach; ?>
@@ -58,9 +59,6 @@
     <div class="carrinhoSection">
         <div class="tituloCarrinho">
             Carrinho
-        </div>
-        <div>
-
         </div>
     </div>
 </body>

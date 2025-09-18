@@ -10,35 +10,36 @@ class Evento {
     }
 
     public function listarTodos()
-{
-    $sql = "
-        SELECT 
-    e.id AS evento_id,
-    e.nome AS evento_nome,
-    e.data_inicio,
-    e.data_fim,
-    e.descricao,
-    l.id AS lote_id,
-    l.nome AS lote_nome,    
-    l.preco,
-    l.qtd_maxima,
-    COUNT(t.id) AS tickets_vendidos,
-    CASE 
-        WHEN COUNT(t.id) >= l.qtd_maxima THEN 1
-        ELSE 0
-    END AS lote_cheio
-FROM eventos e
-LEFT JOIN lotes l ON l.id_evento = e.id
-LEFT JOIN tickets t ON t.id_lote = l.id
-GROUP BY e.id, l.id
-HAVING COUNT(t.id) < l.qtd_maxima
-ORDER BY e.data_inicio ASC, l.id ASC;
-    ";
+    {
+        $query = "
+            SELECT
+                e.id AS evento_id,
+                e.nome,
+                e.data_inicio,
+                e.data_fim,
+                e.descricao,
+                l.ordem AS lote_atual,
+                l.preco,
+                l.id AS lote_id
+            FROM eventos e
+            LEFT JOIN lotes l ON e.id = l.fk_id_evento AND l.ordem = e.lote_atual
+            ORDER BY e.data_inicio ASC
+        ";
 
-    $result = $this->mysqli->query($sql);
-    return $result->fetch_all(MYSQLI_ASSOC);
-}
+        $result = $this->mysqli->query($query);
 
+        if (!$result) {
+            return [];
+        }
+
+        $eventos = [];
+        while ($row = $result->fetch_assoc()) {
+            $eventos[] = $row;
+        }
+
+        return $eventos;
+    }
+    
 
 }
 
