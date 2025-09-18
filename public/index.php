@@ -1,18 +1,17 @@
 <?php
 include("../database/connection.php");
-require_once __DIR__ . '/../app/Controllers/EventosController.php';
+require_once __DIR__ . '/../app/Services/Router.php';
 
-$page = isset($_GET['page']) ? $_GET['page'] : '';
+$router = new Router();
 
-switch ($page) {
-    case 'home':
-        include("../app/Views/home.php");
-        break;
-    case 'eventos':
-        $eventoController = new EventosController($mysqli);
-        $eventoController->index();
-        break;
-    default:
-        echo "Página não encontrada!";
-        break;
-}
+$router->get('/', function() {
+    include("../app/Views/home.php");
+});
+
+$router->get('/home', function() {
+    include("../app/Views/home.php");
+});
+
+$router->get('/eventos', 'EventosController@index');
+
+$router->dispatch();

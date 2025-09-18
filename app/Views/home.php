@@ -7,6 +7,6 @@
 </head>
 <body>
     <h1>Bem-vindo à Home!</h1>
-    <a href="?page=eventos">Ir para Eventos</a>
+    <a href="/eventos">Ir para Eventos</a>
 </body>
 </html>
