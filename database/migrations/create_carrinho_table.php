@@ -15,6 +15,7 @@ $sql = "CREATE TABLE IF NOT EXISTS carrinho(
     fk_id_lote INT,
     fk_id_usuario INT,
     qtd_tickets INT,
+    UNIQUE KEY (fk_id_evento, fk_id_lote),
     FOREIGN KEY (fk_id_evento) REFERENCES eventos(id),
     FOREIGN KEY (fk_id_lote) REFERENCES lotes(id),
     FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id)

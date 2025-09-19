@@ -37,7 +37,7 @@ class Evento {
         while ($row = $result->fetch_assoc()) {
             $eventos[] = $row;
         }
-
+        
         return $eventos;
     }
     

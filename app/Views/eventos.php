@@ -36,8 +36,9 @@
     <div class="eventosSection">
     <main>
 
-    <?php if (isset($msg)): ?>
-        <h1><?= ($msg) ?></h1>
+    <?php if (isset($_SESSION['msg'])): ?>
+        <h1><?= htmlspecialchars($_SESSION['msg']) ?></h1>
+        <?php unset($_SESSION['msg']); ?>
     <?php endif; ?>
 
     <?php if ($eventos): ?>
@@ -51,12 +52,10 @@
                     Lote: <?= htmlspecialchars($evento['lote_atual']) ?><br>
                     Preço: <?= htmlspecialchars($evento['preco']) ?>
                 </li>
-        <form action="/carrinho" method="POST">
-
+        <form action="/carrinho/adicionar_item_carrinho" method="POST">
             <input type="number" name="qtd_tickets" min="1" step="1" value="1" required>
-
             <input type="hidden" name="evento_id" value="<?= htmlspecialchars($evento['evento_id']) ?>">
-            <input type="hidden" name="lote_atual" value="<?= htmlspecialchars($evento['lote_atual']) ?>">
+            <input type="hidden" name="lote_id" value="<?= htmlspecialchars($evento['lote_id']) ?>">
             <button type="submit">Adicionar ao carrinho</button>
         </form>
                 <hr>
@@ -72,6 +71,29 @@
         <div class="tituloCarrinho">
             Carrinho
         </div>
+        <?php if ($carrinho): ?>
+        <ul>
+            <?php foreach ($carrinho as $item_carrinho): ?>
+                <li>
+                <strong><?= htmlspecialchars($item_carrinho['nome_evento']) ?></strong><br>
+                Lote: <?= htmlspecialchars($item_carrinho['lote']) ?><br>
+                Preço: <?= htmlspecialchars($item_carrinho['preco']) ?><br>
+                Quantidade tickets: <?= htmlspecialchars($item_carrinho['qtd_tickets']) ?><br>
+                <form action="/carrinho/remover_item_carrinho" method="POST">
+                <input type="hidden" name="item_carrinho" value="<?= htmlspecialchars($item_carrinho['item_carrinho_id']) ?>">
+                <button type="submit">Remover ticket</button>
+                </form>
+                </li>
+                <br>
+            <?php endforeach; ?>
+        </ul>
+
+        <form action="/carrinho/limpar_carrinho" method="POST">
+                <button type="submit">Limpar carrinho</button>
+                </form>
+    <?php else: ?>
+        <p>Nenhum item no carrinho.</p>
+    <?php endif; ?>
     </div>
 </body>
 </html>

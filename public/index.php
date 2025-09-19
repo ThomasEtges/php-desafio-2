@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include("../database/connection.php");
 require_once __DIR__ . '/../app/Router/Router.php';
 
@@ -13,6 +16,8 @@ $router->get('/home', function() {
 });
 
 $router->get('/eventos', 'EventosController@index');
-$router->post('/carrinho', 'CarrinhosController@adicionarCarrinho');
+$router->post('/carrinho/adicionar_item_carrinho', 'CarrinhosController@adicionarCarrinho');
+$router->post('/carrinho/remover_item_carrinho', 'CarrinhosController@removerItemCarrinho');
+$router->post('/carrinho/limpar_carrinho', 'CarrinhosController@limparCarrinho');
 
 $router->dispatch();
