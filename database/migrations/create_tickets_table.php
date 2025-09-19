@@ -17,11 +17,7 @@ $sql = "CREATE TABLE IF NOT EXISTS tickets(
     horario_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     horario_saida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-<<<<<<< HEAD
-    status VARCHAR(255) NOT NULL,
-=======
     ticket_status VARCHAR(255) NOT NULL,
->>>>>>> 5eca5309c236c2a5b722fd5d8eebb41a66a53606
     FOREIGN KEY (fk_id_evento) REFERENCES eventos(id),
     FOREIGN KEY (fk_id_lote) REFERENCES lotes(id),
     FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id)

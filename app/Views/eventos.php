@@ -35,6 +35,11 @@
 <body class="conteudo">
     <div class="eventosSection">
     <main>
+
+    <?php if (isset($msg)): ?>
+        <h1><?= ($msg) ?></h1>
+    <?php endif; ?>
+
     <?php if ($eventos): ?>
         <ul>
             <?php foreach ($eventos as $evento): ?>
@@ -46,7 +51,14 @@
                     Lote: <?= htmlspecialchars($evento['lote_atual']) ?><br>
                     Preço: <?= htmlspecialchars($evento['preco']) ?>
                 </li>
-                <input type="number" min="1" step="1" value="1"><button onclick="">Adicionar ao carrinho</button>
+        <form action="/carrinho" method="POST">
+
+            <input type="number" name="qtd_tickets" min="1" step="1" value="1" required>
+
+            <input type="hidden" name="evento_id" value="<?= htmlspecialchars($evento['evento_id']) ?>">
+            <input type="hidden" name="lote_atual" value="<?= htmlspecialchars($evento['lote_atual']) ?>">
+            <button type="submit">Adicionar ao carrinho</button>
+        </form>
                 <hr>
                 <br>
             <?php endforeach; ?>

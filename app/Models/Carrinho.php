@@ -9,5 +9,13 @@ class Ticket{
         $this->mysqli = $mysqli;
     }  
 
-}
+    public function adicionarCarrinho()
+    {
+
+    
+
+    }
+
+    }
+
 ?>

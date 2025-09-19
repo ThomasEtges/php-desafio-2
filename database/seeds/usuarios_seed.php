@@ -7,10 +7,7 @@ $mysqli->query("TRUNCATE TABLE usuarios");
 $mysqli->query("SET FOREIGN_KEY_CHECKS = 1");
 
 $sql = "INSERT INTO usuarios (nome, email) VALUES
-    ('João Silva', 'joao@example.com'),
-    ('Maria Oliveira', 'maria@example.com'),
-    ('Pedro Santos', 'pedro@example.com'),
-    ('Ana Costa', 'ana@example.com')";
+    ('Thomas Etges', 'thomas.etges.10@gmail.com')";
 
 if ($mysqli->query($sql) === TRUE) {
     echo "Dados inseridos com sucesso na tabela usuarios\n";

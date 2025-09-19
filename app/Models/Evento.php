@@ -10,12 +10,7 @@ class Evento {
     }
 
     public function listarTodos()
-<<<<<<< HEAD
-{
-    
-}
 
-=======
     {
         $query = "
             SELECT
@@ -46,8 +41,6 @@ class Evento {
         return $eventos;
     }
     
-
->>>>>>> 5eca5309c236c2a5b722fd5d8eebb41a66a53606
 }
 
 ?>

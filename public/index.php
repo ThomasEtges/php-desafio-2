@@ -1,6 +1,6 @@
 <?php
 include("../database/connection.php");
-require_once __DIR__ . '/../app/Services/Router.php';
+require_once __DIR__ . '/../app/Router/Router.php';
 
 $router = new Router();
 
@@ -13,5 +13,6 @@ $router->get('/home', function() {
 });
 
 $router->get('/eventos', 'EventosController@index');
+$router->post('/carrinho', 'CarrinhosController@adicionarCarrinho');
 
 $router->dispatch();
