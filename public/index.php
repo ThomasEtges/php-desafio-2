@@ -16,6 +16,13 @@ $router->get('/home', function() {
 });
 
 $router->get('/eventos', 'EventosController@index');
+
+$router->get('/compra', 'CompraController@index');
+$router->post('/compra/adicionar_desconto', 'CompraController@adicionarDesconto');
+$router->post('/compra/criar_ticket', 'TicketsController@adicionarTicket');
+$router->get('/pagamento', 'TicketsController@pagamento');
+$router->post('/pagamento/pagar', 'TicketsController@pagarTicket');
+
 $router->post('/carrinho/adicionar_item_carrinho', 'CarrinhosController@adicionarCarrinho');
 $router->post('/carrinho/remover_item_carrinho', 'CarrinhosController@removerItemCarrinho');
 $router->post('/carrinho/limpar_carrinho', 'CarrinhosController@limparCarrinho');

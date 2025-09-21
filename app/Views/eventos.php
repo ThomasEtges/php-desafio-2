@@ -91,6 +91,7 @@
         <form action="/carrinho/limpar_carrinho" method="POST">
                 <button type="submit">Limpar carrinho</button>
                 </form>
+        <button onclick="window.location.href = '/compra';">Finalizar compra</button>
     <?php else: ?>
         <p>Nenhum item no carrinho.</p>
     <?php endif; ?>

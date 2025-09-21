@@ -15,6 +15,8 @@ class Carrinho
 
         $query = "
             SELECT
+                c.fk_id_evento,
+                c.fk_id_lote,
                 e.nome AS nome_evento,
                 l.ordem AS lote,
                 l.preco,

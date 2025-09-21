@@ -11,13 +11,15 @@ $mysqli->query("SET FOREIGN_KEY_CHECKS = 1");
 $sql = "CREATE TABLE IF NOT EXISTS tickets(
 
     id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(11) NOT NULL,
     fk_id_evento INT,
     fk_id_lote INT,
     fk_id_usuario INT,
-    horario_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    horario_saida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ticket_status VARCHAR(255) NOT NULL,
+    horario_entrada TIMESTAMP NULL DEFAULT NULL,
+    horario_saida TIMESTAMP NULL DEFAULT NULL,
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_compra TIMESTAMP NULL DEFAULT NULL,
+    status ENUM('pendente', 'cancelado', 'pago') NOT NULL DEFAULT 'pendente',
     FOREIGN KEY (fk_id_evento) REFERENCES eventos(id),
     FOREIGN KEY (fk_id_lote) REFERENCES lotes(id),
     FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id)
