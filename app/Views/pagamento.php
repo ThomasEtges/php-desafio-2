@@ -15,11 +15,10 @@
             </div>
         <?php endif; ?>
 
-        <form action="">
+        <form action="/pagamento/pagar_ticket" method="POST">
             <button type="submit">Finalizar Pagamento</button>
         </form>
             
-
     </div>
 </body>
 </html>

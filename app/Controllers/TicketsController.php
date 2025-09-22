@@ -45,5 +45,17 @@ class TicketsController
 
     }
 
+    public function pagarTicket()
+    {
+
+        $ticketModel = new Ticket($this->mysqli);
+        $ticket = $ticketModel->pagarTicket();
+
+        $_SESSION['msg'] = "Pagamento realizado com sucesso!";
+        header('Location: /eventos');
+        exit();
+
+    }
+
 }
 ?>

@@ -21,7 +21,10 @@ $router->get('/compra', 'CompraController@index');
 $router->post('/compra/adicionar_desconto', 'CompraController@adicionarDesconto');
 $router->post('/compra/criar_ticket', 'TicketsController@adicionarTicket');
 $router->get('/pagamento', 'TicketsController@pagamento');
-$router->post('/pagamento/pagar', 'TicketsController@pagarTicket');
+$router->post('/pagamento/pagar_ticket', 'TicketsController@pagarTicket');
+
+$router->get('/catraca', 'CatracaController@index');
+$router->post('/catraca/verificar_codigo', 'CatracaController@verificarCodigo');
 
 $router->post('/carrinho/adicionar_item_carrinho', 'CarrinhosController@adicionarCarrinho');
 $router->post('/carrinho/remover_item_carrinho', 'CarrinhosController@removerItemCarrinho');

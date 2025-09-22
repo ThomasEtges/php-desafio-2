@@ -57,7 +57,7 @@
         <form action="/carrinho/limpar_carrinho" method="POST">
                 <button type="submit">Limpar carrinho</button>
         </form>
-        <form action="/compra/criar_ticket" method="GET">
+        <form action="/compra/criar_ticket" method="POST">
                 <button type="submit">Ir para pagamento</button>
         </form>
              <?php else: ?>

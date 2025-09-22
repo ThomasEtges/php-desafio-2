@@ -79,4 +79,45 @@ class Ticket
         require_once __DIR__ . '/../Views/pagamento.php';
         
     }
+
+    public function pagarTicket(){
+        $usuario_id = $_SESSION['usuario_id'] ?? 1;
+
+        $stmt = $this->mysqli->prepare("
+            SELECT id FROM tickets
+            WHERE fk_id_usuario = ? AND status = 'pendente'
+        ");
+        $stmt->bind_param("i", $usuario_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $codigo = $this->gerarCodigo();
+
+        $update_stmt = $this->mysqli->prepare("
+            UPDATE tickets
+            SET status = 'pago', codigo = ?, data_compra = CURRENT_TIMESTAMP
+            WHERE fk_id_usuario = ? AND status = 'pendente'
+        ");
+        $update_stmt->bind_param("si", $codigo, $usuario_id);
+        $update_result = $update_stmt->execute();
+
+        $stmt->close();
+        $update_stmt->close();
+
+    }
+
+    private function gerarCodigo(){
+        $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $codigo = '';
+
+        for ($i = 0; $i < 11; $i++) {
+            if ($i == 3 || $i == 7) {
+                $codigo .= '-';
+            } else {
+                $codigo .= $caracteres[rand(0, strlen($caracteres) - 1)];
+            }
+        }
+
+        return $codigo;
+    }
 }
